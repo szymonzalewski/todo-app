@@ -3,6 +3,7 @@ function taskAdded() {
   if (addTask.trim() === "") return;
 
   let div = document.createElement("div");
+  div.classList.add("task-div");
 
   let newTaskParagraph = document.createElement("p");
   newTaskParagraph.textContent = addTask;
@@ -27,7 +28,7 @@ function taskAdded() {
   changeColor.classList.add();
 
   let dateTime = document.createElement("span");
-  dateTime.classList.add();
+  dateTime.classList.add("date-styles");
   dateTime.textContent = " (" + getCurrentDateTime() + ")";
 
   newTaskParagraph.appendChild(dateTime);
@@ -94,7 +95,7 @@ function taskAdded() {
   function getCurrentDateTime() {
     let now = new Date();
     let day = String(now.getDate()).padStart(2, "0");
-    let month = String(now.getMonth() + 1).padStart(2, "0"); // Miesiące zaczynają się od 0
+    let month = String(now.getMonth() + 1).padStart(2, "0");
     let year = now.getFullYear();
     let hours = String(now.getHours()).padStart(2, "0");
     let minutes = String(now.getMinutes()).padStart(2, "0");
