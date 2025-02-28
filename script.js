@@ -3,34 +3,39 @@ function taskAdded() {
   if (addTask.trim() === "") return;
 
   let div = document.createElement("div");
+  div.classList.add("task-div");
 
   let newTaskParagraph = document.createElement("p");
-  newTaskParagraph.textContent = addTask;
+
+  let taskText = document.createElement("span"); // Element na sam tekst zadania
+  taskText.textContent = addTask;
+
+  let dateTime = document.createElement("span"); // Element na datę i czas
+  dateTime.classList.add("date-styles");
+  dateTime.textContent = " (" + getCurrentDateTime() + ")";
 
   let buttonDelete = document.createElement("button");
   buttonDelete.textContent = "Usuń";
-  buttonDelete.classList.add();
+  buttonDelete.classList.add("delete-btn");
 
   let buttonEdit = document.createElement("button");
   buttonEdit.textContent = "Edytuj";
-  buttonEdit.classList.add();
+  buttonEdit.classList.add("edit-btn");
 
   let buttonUp = document.createElement("button");
   buttonUp.textContent = "Przesuń wyżej";
-  buttonUp.classList.add();
+  buttonUp.classList.add("up-btn");
 
   let buttonDown = document.createElement("button");
-  buttonDown.textContent = "Przeuń w dół";
-  buttonDown.classList.add();
+  buttonDown.textContent = "Przesuń w dół";
+  buttonDown.classList.add("down-btn");
 
   let changeColor = document.createElement("select");
-  changeColor.classList.add();
+  changeColor.classList.add("color-picker");
 
-  let dateTime = document.createElement("span");
-  dateTime.classList.add();
-  dateTime.textContent = " (" + getCurrentDateTime() + ")";
-
+  newTaskParagraph.appendChild(taskText);
   newTaskParagraph.appendChild(dateTime);
+
   div.appendChild(newTaskParagraph);
   div.appendChild(buttonDelete);
   div.appendChild(buttonEdit);
@@ -47,7 +52,7 @@ function taskAdded() {
   };
 
   buttonEdit.onclick = function () {
-    editParagraph(newTaskParagraph);
+    editParagraph(taskText); // Przekazujemy tylko część tekstową bez daty
   };
 
   buttonUp.onclick = function () {
@@ -84,17 +89,17 @@ function taskAdded() {
   document.getElementById("container").appendChild(div);
   document.getElementById("add-task").value = "";
 
-  function editParagraph(paragraph) {
-    let newText = prompt("Edytuj zadanie:", paragraph.textContent);
+  function editParagraph(taskTextElement) {
+    let newText = prompt("Edytuj zadanie:", taskTextElement.textContent);
     if (newText !== null && newText.trim() !== "") {
-      paragraph.textContent = newText;
+      taskTextElement.textContent = newText;
     }
   }
 
   function getCurrentDateTime() {
     let now = new Date();
     let day = String(now.getDate()).padStart(2, "0");
-    let month = String(now.getMonth() + 1).padStart(2, "0"); // Miesiące zaczynają się od 0
+    let month = String(now.getMonth() + 1).padStart(2, "0");
     let year = now.getFullYear();
     let hours = String(now.getHours()).padStart(2, "0");
     let minutes = String(now.getMinutes()).padStart(2, "0");
