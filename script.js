@@ -6,32 +6,36 @@ function taskAdded() {
   div.classList.add("task-div");
 
   let newTaskParagraph = document.createElement("p");
-  newTaskParagraph.textContent = addTask;
 
-  let buttonDelete = document.createElement("button");
-  buttonDelete.textContent = "Usuń";
-  buttonDelete.classList.add();
+  let taskText = document.createElement("span"); // Element na sam tekst zadania
+  taskText.textContent = addTask;
 
-  let buttonEdit = document.createElement("button");
-  buttonEdit.textContent = "Edytuj";
-  buttonEdit.classList.add();
-
-  let buttonUp = document.createElement("button");
-  buttonUp.textContent = "Przesuń wyżej";
-  buttonUp.classList.add();
-
-  let buttonDown = document.createElement("button");
-  buttonDown.textContent = "Przeuń w dół";
-  buttonDown.classList.add();
-
-  let changeColor = document.createElement("select");
-  changeColor.classList.add();
-
-  let dateTime = document.createElement("span");
+  let dateTime = document.createElement("span"); // Element na datę i czas
   dateTime.classList.add("date-styles");
   dateTime.textContent = " (" + getCurrentDateTime() + ")";
 
+  let buttonDelete = document.createElement("button");
+  buttonDelete.textContent = "Usuń";
+  buttonDelete.classList.add("delete-btn");
+
+  let buttonEdit = document.createElement("button");
+  buttonEdit.textContent = "Edytuj";
+  buttonEdit.classList.add("edit-btn");
+
+  let buttonUp = document.createElement("button");
+  buttonUp.textContent = "Przesuń wyżej";
+  buttonUp.classList.add("up-btn");
+
+  let buttonDown = document.createElement("button");
+  buttonDown.textContent = "Przesuń w dół";
+  buttonDown.classList.add("down-btn");
+
+  let changeColor = document.createElement("select");
+  changeColor.classList.add("color-picker");
+
+  newTaskParagraph.appendChild(taskText);
   newTaskParagraph.appendChild(dateTime);
+
   div.appendChild(newTaskParagraph);
   div.appendChild(buttonDelete);
   div.appendChild(buttonEdit);
@@ -48,7 +52,7 @@ function taskAdded() {
   };
 
   buttonEdit.onclick = function () {
-    editParagraph(newTaskParagraph);
+    editParagraph(taskText); // Przekazujemy tylko część tekstową bez daty
   };
 
   buttonUp.onclick = function () {
@@ -85,10 +89,10 @@ function taskAdded() {
   document.getElementById("container").appendChild(div);
   document.getElementById("add-task").value = "";
 
-  function editParagraph(paragraph) {
-    let newText = prompt("Edytuj zadanie:", paragraph.textContent);
+  function editParagraph(taskTextElement) {
+    let newText = prompt("Edytuj zadanie:", taskTextElement.textContent);
     if (newText !== null && newText.trim() !== "") {
-      paragraph.textContent = newText;
+      taskTextElement.textContent = newText;
     }
   }
 
