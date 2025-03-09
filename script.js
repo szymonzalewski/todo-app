@@ -69,6 +69,7 @@ function taskAdded() {
     }
   };
 
+  // tablica obiektów kolorow
   let colors = [
     { name: "Biały", value: "#ffffff" },
     { name: "Czerwony", value: "#ff5733" },
@@ -79,6 +80,11 @@ function taskAdded() {
     { name: "Szary", value: "#bdc3c7" },
   ];
 
+  // petla forEach dla kazdego koloru przypisuje element HTML OPTIONS
+  // Tworzy nowy element <option> dla <select>.
+  // Ustawia wartość (value) opcji na kod koloru HEX (color.value).
+  // Ustawia tekst (textContent) opcji na nazwę koloru (color.name).
+  // Dodaje (appendChild) element <option> do listy rozwijanej (changeColor).
   colors.forEach((color) => {
     let option = document.createElement("option");
     option.value = color.value;
@@ -86,13 +92,24 @@ function taskAdded() {
     changeColor.appendChild(option);
   });
 
+  // pobiera element HTML o id=container następnie tworzy nowy element div dziecko
   document.getElementById("container").appendChild(div);
+
+  // pobiera element HTML o id=add-task i ustawiamy jego wartość value na pusty string ""
   document.getElementById("add-task").value = "";
 
   function editParagraph(taskTextElement) {
+    // przypisanie do zminnej okna dialogowego
+    // okno dialogowe posiada pierwszy argument czyli tytul i
+    // drugi argument ktory ustawia na wartosc domyslna pole tekstowe czyli
+    // wiadomosc ktora zostala wpisana
+
     let newText = prompt("Edytuj zadanie:", taskTextElement.textContent);
     if (newText !== null && newText.trim() !== "") {
+      // sprawdzenie czy uzytkownik nie anulowal
+      // // sprawdzenie czy uzytkownik nie wpisal pustych znakow
       taskTextElement.textContent = newText;
+      // jesli warunek jest spelniony tekst zostanie zmieni6ony
     }
   }
 
