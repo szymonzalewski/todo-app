@@ -1,0 +1,29 @@
+{
+  "name": "to_do_list",
+  "version": "1.0.0",
+  "description": "toDo list with database",
+  "main": "script.js",
+  "scripts": {
+    "test": "dev",
+    "dev": "node script.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/szymonzalewski/todo-app.git"
+  },
+  "author": "SzymonZalewski",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/szymonzalewski/todo-app/issues"
+  },
+  "homepage": "https://github.com/szymonzalewski/todo-app#readme",
+  "dependencies": {
+    "body-parser": "^1.20.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "nodemon": "^3.1.9",
+    "pg": "^8.13.3",
+    "pg-promise": "^11.10.2"
+  }
+}
